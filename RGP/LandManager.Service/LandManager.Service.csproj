@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LandManager.Models\LandManager.Models.csproj" />
+    <ProjectReference Include="..\LandManager.Data\LandManager.Data.csproj" />
+    <ProjectReference Include="..\LandManager.Core\LandManager.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Implementations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementations\" />
+  </ItemGroup>
+</Project>

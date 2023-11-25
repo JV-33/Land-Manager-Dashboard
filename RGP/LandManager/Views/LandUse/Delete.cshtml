@@ -1,0 +1,39 @@
+﻿@model LandManager.Models.LandUse
+
+@{
+    ViewData["Title"] = "Dzēst Zemes Lietojumu";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Vai esat pārliecināts, ka vēlaties dzēst šo zemes lietojumu?</h3>
+<div>
+    <h4>Zemes Lietojums</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tipa
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Type
+        </dd>
+        <dt class="col-sm-2">
+            Platība Hektāros
+        </dt>
+        <dd class="col-sm-10">
+            @Model.AreaInHectares
+        </dd>
+        <dt class="col-sm-2">
+            Zemes Gabala ID
+        </dt>
+        <dd class="col-sm-10">
+            @Model.LandParcelId
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="LandUseId" />
+        <input type="submit" value="Dzēst" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Atcelt</a>
+    </form>
+</div>

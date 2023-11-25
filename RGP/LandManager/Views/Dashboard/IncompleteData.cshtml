@@ -1,0 +1,56 @@
+﻿@model LandManager.Models.IncompleteDataViewModel
+
+@{
+    ViewData["Title"] = "Nepilnīgie Dati";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.PersonsWithoutProperties != null && Model.PersonsWithoutProperties.Any())
+{
+    <h3>Personas bez Īpašumiem</h3>
+    <ul>
+        @foreach (var person in Model.PersonsWithoutProperties)
+        {
+            <li>@person.FirstName @person.LastName</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Nav personas bez īpašumiem.</p>
+}
+
+@if (Model.PropertiesWithoutLandParcels != null && Model.PropertiesWithoutLandParcels.Any())
+{
+    <h3>Īpašumi bez Zemes Gabaliem</h3>
+    <ul>
+        @foreach (var property in Model.PropertiesWithoutLandParcels)
+        {
+            <li>@property.Name - @property.CadastreNumber</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Nav īpašumu bez zemes gabaliem.</p>
+}
+
+@if (Model.LandParcelsWithoutLandUses != null && Model.LandParcelsWithoutLandUses.Any())
+{
+    <h3>Zemes Gabali bez Zemes Lietojumiem</h3>
+    <ul>
+        @foreach (var parcel in Model.LandParcelsWithoutLandUses)
+        {
+            <li>@parcel.LandParcelId - @parcel.TotalAreaInHectares hectare</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Nav zemes gabalu bez zemes lietojumiem.</p>
+}
+
+<div>
+    <button onclick="history.back()" class="btn btn-secondary">Atpakaļ</button>
+</div>

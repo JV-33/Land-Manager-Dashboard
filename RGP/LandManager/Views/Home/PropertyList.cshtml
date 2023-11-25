@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LandManager.Models.LandProperty>
+
+@{
+    ViewData["Title"] = "Īpašumu Saraksts";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-controller="LandProperty" asp-action="Create" class="btn btn-primary">Pievienot Īpašumu</a>
+
+</p>
+
+<table class="table">
+    <tr>
+        <th>Nosaukums</th>
+        <th>Kadastra Numurs</th>
+        <th>Status</th>
+        <th>Darbības</th> 
+    </tr>
+
+    @foreach (var property in Model)
+    {
+        <tr>
+            <td>@property.Name</td>
+            <td>@property.CadastreNumber</td>
+            <td>@property.Status</td>
+            <td>
+                <a asp-controller="LandProperty" asp-action="Edit" asp-route-id="@property.LandPropertyId" class="btn btn-sm btn-secondary">Rediģēt</a>
+                <a asp-controller="LandProperty" asp-action="Delete" asp-route-id="@property.LandPropertyId" class="btn btn-sm btn-danger">Dzēst</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    <button onclick="history.back()" class="btn btn-secondary">Atpakaļ</button>
+</div>

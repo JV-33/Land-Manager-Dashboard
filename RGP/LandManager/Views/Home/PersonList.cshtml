@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LandManager.Models.Person>
+
+@{
+    ViewData["Title"] = "Personu Saraksts";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-controller="Person" asp-action="Create" class="btn btn-primary">Pievienot Personu</a>
+    <form asp-controller="Person" asp-action="Index" method="get" class="form-inline">
+        <input type="text" name="searchString" class="form-control" placeholder="Meklēt..." />
+        <button type="submit" class="btn btn-default">Meklēt</button>
+    </form>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Vārds</th>
+            <th>Uzvārds</th>
+            <th>Nosaukums</th>
+            <th>Personas Kods vai Reģistrācijas Nr</th>
+            <th>Tipa</th>
+            <th>Darbības</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.Title</td>
+                <td>@person.PersonalCodeOrRegistrationNumber</td>
+                <td>@person.Type</td>
+                <td>
+                    <a asp-controller="Person" asp-action="Details" asp-route-id="@person.PersonId" class="btn btn-sm btn-secondary">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <button onclick="history.back()" class="btn btn-secondary">Atpakaļ</button>
+</div>

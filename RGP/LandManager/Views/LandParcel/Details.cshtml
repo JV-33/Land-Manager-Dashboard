@@ -1,0 +1,58 @@
+﻿@model LandManager.Models.LandParcel
+
+@{
+    ViewData["Title"] = "Zemes Gabala Detaļas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <p>Kopējā platība (hektāros): @Model.TotalAreaInHectares</p>
+    <p>Izpētes datums: @Model.SurveyDate.ToString("dd.MM.yyyy")</p>
+</div>
+
+@if (Model.LandProperty != null)
+{
+    <div>
+        <h4>Saistītais Īpašums</h4>
+        <p>Īpašuma nosaukums: @Model.LandProperty.Name</p>
+    </div>
+}
+
+<h3>Zemes Lietojumi</h3>
+@if (Model.LandUses != null && Model.LandUses.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tips</th>
+                <th>Platība Hektāros</th>
+                <th>Darbības</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var landUse in Model.LandUses)
+            {
+                <tr>
+                    <td>@landUse.Type</td>
+                    <td>@landUse.AreaInHectares</td>
+                    <td>
+                        <a asp-controller="LandUse" asp-action="Details" asp-route-id="@landUse.LandUseId" class="btn btn-sm btn-secondary">Skatīt</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Šim zemes gabalam nav saistītu zemes lietojumu.</p>
+}
+
+<div>
+    <a asp-controller="LandParcel" asp-action="Edit" asp-route-id="@Model.LandParcelId" class="btn btn-primary">Rediģēt</a>
+    <a asp-controller="LandParcel" asp-action="Delete" asp-route-id="@Model.LandParcelId" class="btn btn-danger">Dzēst</a>
+</div>
+<div>
+    <button onclick="history.back()" class="btn btn-secondary">Atpakaļ</button>
+</div>

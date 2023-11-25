@@ -1,0 +1,123 @@
+﻿@model LandManager.Models.SummaryViewModel
+
+@{
+    ViewData["Title"] = "Kopsavilkums";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Personas sadaļa -->
+<h3>Personas</h3>
+@if (Model.Persons != null && Model.Persons.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vārds</th>
+                <th>Uzvārds</th>
+                <th>Nosaukums</th>
+                <th>Personas Kods vai Reģistrācijas Nr</th>
+                <th>Tips</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model.Persons)
+            {
+                <tr>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    <td>@person.Title</td>
+                    <td>@person.PersonalCodeOrRegistrationNumber</td>
+                    <td>@person.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nav pieejama informācija par personām.</p>
+}
+
+<!-- Īpašumi sadaļa -->
+<h3>Īpašumi</h3>
+@if (Model.LandProperties != null && Model.LandProperties.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nosaukums</th>
+                <th>Kadastra numurs</th>
+                <th>Statuss</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var property in Model.LandProperties)
+            {
+                <tr>
+                    <td>@property.Name</td>
+                    <td>@property.CadastreNumber</td>
+                    <td>@property.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nav pieejama informācija par īpašumiem.</p>
+}
+
+<!-- Zemes Gabali sadaļa -->
+<h3>Zemes Gabali</h3>
+@if (Model.LandParcels != null && Model.LandParcels.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kopējā platība (ha)</th>
+                <th>Uzmērīšanas datums</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var parcel in Model.LandParcels)
+            {
+                <tr>
+                    <td>@parcel.TotalAreaInHectares</td>
+                    <td>@parcel.SurveyDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nav pieejama informācija par zemes gabaliem.</p>
+}
+
+<!-- Zemes Lietojumi sadaļa -->
+<h3>Zemes Lietojumi</h3>
+@if (Model.LandUses != null && Model.LandUses.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Veids</th>
+                <th>Platība (ha)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var landUse in Model.LandUses)
+            {
+                <tr>
+                    <td>@landUse.Type</td>
+                    <td>@landUse.AreaInHectares</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nav pieejama informācija par zemes lietojumiem.</p>
+}

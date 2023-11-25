@@ -1,0 +1,30 @@
+﻿@model LandManager.Models.LandUse
+
+@{
+    ViewData["Title"] = "Zemes Lietojuma Detaļas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h3>Lietojuma Tips: @Model.Type</h3>
+    <p>Platība Hektāros: @Model.AreaInHectares</p>
+    <p>Zemes Gabala ID: @Model.LandParcelId</p>
+    @if (Model.LandParcel != null)
+    {
+        <p>Saistīts Zemes Gabals:</p>
+        <ul>
+            <li>ID: @Model.LandParcel.LandParcelId</li>
+            <li>Kopplatība Hektāros: @Model.LandParcel.TotalAreaInHectares</li>
+            <li>Uzmērīšanas Datums: @Model.LandParcel.SurveyDate.ToShortDateString()</li>
+        </ul>
+    }
+</div>
+
+<div>
+    <a asp-controller="LandUse" asp-action="Edit" asp-route-id="@Model.LandUseId" class="btn btn-primary">Rediģēt</a>
+    <a asp-controller="LandUse" asp-action="Delete" asp-route-id="@Model.LandUseId" class="btn btn-danger">Dzēst</a>
+</div>
+<div>
+    <button onclick="history.back()" class="btn btn-secondary">Atpakaļ</button>
+</div>
