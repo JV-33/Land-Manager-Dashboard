@@ -1,0 +1,29 @@
+﻿@model LandManager.Models.LandParcel
+
+@{
+    ViewData["Title"] = "Pievienot Zemes Gabalu";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="TotalAreaInHectares" class="control-label">Kopplatība Hektāros</label>
+        <input asp-for="TotalAreaInHectares" class="form-control" />
+        <span asp-validation-for="TotalAreaInHectares" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SurveyDate" class="control-label">Uzmērīšanas Datums</label>
+        <input asp-for="SurveyDate" class="form-control" type="date" />
+        <span asp-validation-for="SurveyDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LandPropertyId" class="control-label">Kadastra Numurs</label>
+        <input asp-for="LandPropertyId" class="form-control" maxlength="11" minlength="11" placeholder="Jābūt 11 cipariem" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Lūdzu, ievadiet 11 ciparus')" />
+        <span asp-validation-for="LandPropertyId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Pievienot" class="btn btn-primary" />
+    </div>
+</form>

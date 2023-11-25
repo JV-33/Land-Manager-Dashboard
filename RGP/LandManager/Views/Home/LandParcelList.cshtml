@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LandManager.Models.LandParcel>
+
+@{
+    ViewData["Title"] = "Zemes Gabalu Saraksts";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-controller="LandParcel" asp-action="Create" class="btn btn-primary">Pievienot Zemes Gabalu</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Kopplatība Hektāros</th>
+        <th>Uzmērīšanas Datums</th>
+        <th>Kadastra Numurs</th>
+        <th>Darbības</th> 
+    </tr>
+
+    @foreach (var parcel in Model)
+    {
+        <tr>
+            <td>@parcel.LandParcelId</td>
+            <td>@parcel.TotalAreaInHectares</td>
+            <td>@parcel.SurveyDate.ToString("yyyy-MM-dd")</td>
+            <td>@parcel.LandPropertyId</td>
+            <td>
+                <a asp-controller="LandParcel" asp-action="Edit" asp-route-id="@parcel.LandParcelId" class="btn btn-sm btn-secondary">Rediģēt</a>
+                <a asp-controller="LandParcel" asp-action="Delete" asp-route-id="@parcel.LandParcelId" class="btn btn-sm btn-danger">Dzēst</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    <button onclick="history.back()" class="btn btn-secondary">Atpakaļ</button>
+</div>

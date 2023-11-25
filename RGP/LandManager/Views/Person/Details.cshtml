@@ -1,0 +1,46 @@
+﻿@model LandManager.Models.SummaryViewModel
+
+@{
+    ViewData["Title"] = "Personas Detaļas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@foreach (var person in Model.Persons)
+{
+    <div>
+        <h3>@person.FirstName @person.LastName</h3>
+        <p>Personas Kods: @person.PersonalCodeOrRegistrationNumber</p>
+        <p>Tipa: @person.Type</p>
+    </div>
+}
+
+<h3>Īpašumi</h3>
+@foreach (var property in Model.LandProperties)
+{
+    <p>
+        @property.Name - @property.CadastreNumber
+        <a asp-controller="LandProperty" asp-action="Details" asp-route-id="@property.LandPropertyId">Skatīt detaļas</a>
+    </p>
+}
+
+<h3>Zemes Gabali</h3>
+@foreach (var parcel in Model.LandParcels)
+{
+    <p>
+        Total Area: @parcel.TotalAreaInHectares hectares
+        <a asp-controller="LandParcel" asp-action="Details" asp-route-id="@parcel.LandParcelId">Skatīt detaļas</a>
+    </p>
+}
+
+<h3>Zemes Lietojumi</h3>
+@foreach (var use in Model.LandUses)
+{
+    <p>
+        @use.Type - @use.AreaInHectares hectares
+        <a asp-controller="LandUse" asp-action="Details" asp-route-id="@use.LandUseId">Skatīt detaļas</a>
+    </p>
+}
+<div>
+    <button onclick="history.back()" class="btn btn-secondary">Atpakaļ</button>
+</div>

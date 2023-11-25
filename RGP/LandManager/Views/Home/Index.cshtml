@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h1 class="text-center">Land Manager Dashboard</h1>
+
+    <div class="my-4">
+        <h2>Personu Saraksts</h2>
+        <p><a href="@Url.Action("Index", "Person")">Skatīt Personu Sarakstu</a> - Pārskatīt un labot personas datus, vai atvērt to īpašumu sarakstu.</p>
+    </div>
+
+    <div class="my-4">
+        <h2>Papildu Informācija</h2>
+        <p><a href="@Url.Action("Summary", "Dashboard")">Kopsavilkuma Informācija</a> - Apskatīt visu objektu kopsavilkumu, ieskaitot personas, to īpašumus, zemesgabalus un zemes lietojumu.</p>
+        <p><a href="@Url.Action("IncompleteData", "Dashboard")">Nepilnīgo Datu Pārskats</a> - Apskatīt nepilnīgos datus, piemēram, personas bez īpašumiem, īpašumus bez zemes gabaliem vai zemes gabalus bez zemes lietojumiem.</p>
+    </div>
+</div>
